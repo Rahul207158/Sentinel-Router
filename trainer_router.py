@@ -271,7 +271,6 @@ def train():
     # Save Tokenizer (Vocabulary)
     tokenizer.save_pretrained(f"{OUTPUT_DIR}/tokenizer")
     
-    print("🎉 DONE. You can now proceed to Inference.")
 
 if __name__ == "__main__":
     train()
