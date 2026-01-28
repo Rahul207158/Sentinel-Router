@@ -52,12 +52,7 @@ Clone the repository:
 git clone https://github.com/yourusername/sentinel-router.git
 cd sentinel-router
 ```
-### 1.1 Generate the Model (Important!)
-Since we don't ship large model files on GitHub, you must export the ONNX model locally first:
-```bash
-pip install torch transformers onnx
-python export_onnx.py
-```
+
 ### 2. Configuration
 Create your environment file from the template. Note: Your keys remain local and are never logged.
 ```bash
@@ -77,6 +72,7 @@ Build and start the container:
 ```bash
 docker compose up --build
 ```
+Note: The first build will take a moment to automatically download the Neural Model (~250MB) from GitHub Releases.
 The Gateway is now active at `http://localhost:8000`.
 
 ## 🧪 Usage Examples
