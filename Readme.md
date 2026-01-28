@@ -28,12 +28,12 @@ Sentinel acts as a smart proxy. You simply point your existing tools to Sentinel
 
 ```mermaid
 graph LR
-    User[User / Chat App] -->|Request| S[🛡️ Sentinel Gateway]
+    User["User / Chat App"] -->|Request| S["🛡️ Sentinel Gateway"]
     
-    S -->|Analyze (ONNX)| Brain{Neural Router}
+    S -->|"Analyze (ONNX)"| Brain{"Neural Router"}
     
-    Brain -->|Risk: HIGH| Local[🏠 Local LLM (DeepSeek)]
-    Brain -->|Risk: LOW| Cloud[☁️ OpenAI (GPT-4)]
+    Brain -->|"Risk: HIGH"| Local["🏠 Local LLM (DeepSeek)"]
+    Brain -->|"Risk: LOW"| Cloud["☁️ OpenAI (GPT-4)"]
     
     Local --> User
     Cloud --> User
