@@ -1,0 +1,17 @@
+openai
+pydantic
+datasets
+python-dotenv
+torch
+transformers
+scikit-learn
+accelerate
+huggingface_hub
+matplotlib
+seaborn
+fastapi
+uvicorn
+litellm
+onnx
+onnxruntime
+numpy

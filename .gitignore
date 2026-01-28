@@ -1,0 +1,22 @@
+# 1. The Big Culprit (Virtual Environment)
+venv/
+.venv/
+env/
+
+# 2. Large Data Files
+*.jsonl
+DATA_GENERATION/
+
+# 3. Model Artifacts (Too big for Git)
+sentinel_router_v1/
+*.pt
+*.onnx
+*.zip
+
+# 4. Python Cache
+__pycache__/
+*.py[cod]
+
+# 5. Environment Secrets
+.env
+validation/*
