@@ -28,6 +28,7 @@ COPY . /app
 
 # Expose the port
 EXPOSE 8000
-
+# Create the folder and download the model during build
+RUN python setup_model.py
 # Run the server
 CMD ["python", "server.py"]
