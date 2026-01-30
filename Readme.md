@@ -65,6 +65,9 @@ OPENAI_API_KEY=sk-proj-your-key-here
 
 # URL for Local LLM (Use host.docker.internal to reach Ollama on Mac/Windows)
 LOCAL_LLM_URL=http://host.docker.internal:11434
+
+# Local Model Name (Defaults to deepseek-r1:1.5b if not set)
+LOCAL_MODEL_NAME=deepseek-r1:1.5b
 ```
 
 ### 3. Launch
