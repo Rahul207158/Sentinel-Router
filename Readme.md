@@ -104,6 +104,21 @@ curl http://localhost:8000/v1/chat/completions \
   }'
 ```
 
+### 💡 Streaming vs Non-Streaming
+By default, Sentinel enables streaming (`"stream": true`), returning Server-Sent Events (SSE) for real-time typewriter effects.
+To get a single clean JSON response, explicitly set `"stream": false` in your request.
+
+**Non-Streaming Example:**
+```bash
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{ 
+    "model": "gpt-4o", 
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "stream": false
+  }'
+```
+
 ### Option B: Python (OpenAI SDK)
 
 ```python
