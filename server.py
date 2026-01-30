@@ -14,6 +14,7 @@ from inference_onnx import RouterEngine
 # We just trust the engine's decision.
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
 LOCAL_LLM_URL = os.getenv("LOCAL_LLM_URL", "http://host.docker.internal:11434") 
+LOCAL_MODEL_NAME = os.getenv("LOCAL_MODEL_NAME", "deepseek-r1:1.5b")
 
 app = FastAPI(title="Sentinel-Router AI Gateway (ONNX)")
 
@@ -35,14 +36,16 @@ async def chat_proxy(request: ChatRequest):
     print(f"🧠 Analysis: {decision['reason']} | Risk: {decision['risk_level']}")
 
     # 2. Route
+    local_model_id = f"ollama/{LOCAL_MODEL_NAME}"
+
     if decision['route'] == "BLOCK_OR_LOCAL":
-        target_model = "ollama/deepseek-r1:1.5b"
+        target_model = local_model_id
     elif decision['route'] == "LOCAL_DEEPSEEK":
-        target_model = "ollama/deepseek-r1:1.5b"
+        target_model = local_model_id
     elif decision['route'] == "CLOUD_GPT4":
         target_model = "gpt-4o"
     else:
-        target_model = "ollama/deepseek-r1:1.5b" # Default Fallback
+        target_model = local_model_id # Default Fallback
 
     # 3. Execute
     try:

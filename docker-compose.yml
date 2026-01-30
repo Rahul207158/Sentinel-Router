@@ -10,6 +10,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       # This special URL allows the container to talk to Ollama running on your Mac
       - LOCAL_LLM_URL=http://host.docker.internal:11434
+      # Default to deepseek-r1:1.5b if not set in .env
+      - LOCAL_MODEL_NAME=${LOCAL_MODEL_NAME:-deepseek-r1:1.5b}
     extra_hosts:
       - "host.docker.internal:host-gateway"
       # volumes:
