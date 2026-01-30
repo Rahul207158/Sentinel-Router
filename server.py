@@ -4,10 +4,21 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import uvicorn
+import json
 from litellm import completion
 
 # ✅ CHANGE: Import from ONNX engine
 from inference_onnx import RouterEngine 
+
+# Helper for SSE Streaming
+def stream_generator(response):
+    for chunk in response:
+        # litellm returns ModelResponse objects
+        # We need to convert them to dict, then JSON string
+        chunk_dict = chunk.model_dump() # or .dict() depending on pydantic version
+        json_str = json.dumps(chunk_dict)
+        yield f"data: {json_str}\n\n"
+    yield "data: [DONE]\n\n" 
 
 # --- CONFIGURATION ---
 # Note: Thresholds are now handled inside inference_onnx.py
@@ -61,7 +72,7 @@ async def chat_proxy(request: ChatRequest):
         )
         
         if request.stream:
-            return StreamingResponse(response, media_type="text/event-stream")
+            return StreamingResponse(stream_generator(response), media_type="text/event-stream")
         else:
             return response
 
