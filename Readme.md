@@ -49,7 +49,7 @@ graph LR
 ### 1. Installation
 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sentinel-router.git
+git clone https://github.com/Rahul207158/sentinel-router.git
 cd sentinel-router
 ```
 
